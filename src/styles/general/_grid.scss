@@ -1,0 +1,19 @@
+/**/
+// Shorter (inuit 4-style) class names for grids
+.gw {
+	width: 100%;
+	max-width: $max-width;
+	margin: 0 auto;
+	padding: $base-spacing-unit;
+}
+.g {
+	@extend .grid__item;
+	&.clear {
+		float: none;
+	}
+}
+
+.full-width {
+	width: 100%;
+	margin: 0 auto;
+}

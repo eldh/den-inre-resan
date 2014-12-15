@@ -1,0 +1,33 @@
+.loading-page {
+	position: absolute;
+	display: flex;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	flex-grow: 1;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	padding-bottom: $footer-height;
+}
+.loading-page__spinner {
+	width: $base-spacing-unit;
+	height: $base-spacing-unit;
+	padding: $half-spacing-unit;
+	margin: $half-spacing-unit;
+	background-color: rgba($font-color,0.5);
+	border-radius: 50%;
+	opacity: 0.2;
+	animation-name: loading-animation;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(0.000, 0.610, 0.810, 0.975);
+}
+
+@keyframes loading-animation {
+	0%{transform: scale(1);opacity:0.2;}
+	20%{transform: scale(1.15);opacity:1;}
+	90%{transform: scale(0.9);opacity:0.05;}
+	100%{transform: scale(1);opacity:0.2;}
+}

@@ -1,0 +1,35 @@
+/*
+
+Body
+======
+
+		<div>A text in the body</div>
+
+*/
+html {
+	background-color: $body-background;
+}
+body {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	color: $font-color;
+	line-height: $base-line-height;
+	background-color: $body-background;
+	padding-top: $header-height;
+	.ios-web-app & {
+		padding-top: $header-height + 20;
+	}
+}
+
+* {
+	-webkit-tap-highlight-color: transparent;
+	outline: none;
+}
+
+div {
+	user-select: none !important;
+}

@@ -1,0 +1,3 @@
+@mixin brand-shadow ($inset: null) {
+	box-shadow: 0 1px 1px 1px mix($font-color, $background-color, 7%) $inset;
+}

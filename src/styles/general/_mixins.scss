@@ -1,0 +1,654 @@
+// ---- CSS3 SASS MIXINS ----
+// https://github.com/madr/css3-sass-mixins
+//
+//  Copyright (C) 2011 by Anders Ytterström
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
+
+// ---- LEGACY IE SUPPORT USING FILTERS ----
+//  Should IE filters be used or not?
+//  PROS: gradients, drop shadows etc will be handled by css.
+//  CONS: will harm the site performance badly,
+//        especially on sites with heavy rendering and scripting.
+$useIEFilters: 0;
+// might be 0 or 1. disabled by default.
+// ---- /LEGACY IE SUPPORT USING FILTERS ----
+
+
+@mixin background-size ($value) {
+	-webkit-background-size: $value;
+	background-size: $value;
+}
+
+@mixin border-image ($path, $offsets, $repeats) {
+	-moz-border-image: $path $offsets $repeats;
+	-o-border-image: $path $offsets $repeats;
+	-webkit-border-image: $path $offsets $repeats;
+	border-image: $path $offsets $repeats;
+}
+
+@mixin border-radius ($values) {
+	-moz-border-radius: $values;
+	-webkit-border-radius: $values;
+	border-radius: $values;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
+@mixin box-shadow ($x, $y, $offset, $hex, $ie: $useIEFilters, $inset: null, $spread:null) {
+	-moz-box-shadow: $x $y $offset $spread $hex $inset;
+	-webkit-box-shadow: $x $y $offset $spread $hex $inset;
+	box-shadow: $x $y $offset $spread $hex $inset;
+}
+
+@mixin box-sizing($value) {
+	-moz-box-sizing: $value;
+	-webkit-box-sizing: $value;
+	box-sizing: $value;
+}
+
+// requires sass 3.2
+//@mixin keyframes {
+//     @-moz-keyframes { @content; }
+//      @-ms-keyframes { @content; }
+//       @-o-keyframes { @content; }
+//  @-webkit-keyframes { @content; }
+//          @keyframes { @content; }
+//}
+
+@mixin linear-gradient($from, $to, $ie: $useIEFilters) {
+	@if $ie != 1 { background-color: $to; }
+
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, $from),color-stop(1, $to));
+	background-image: -webkit-linear-gradient(top, $from, $to);
+	background-image: -moz-linear-gradient(top, $from, $to);
+	background-image: -ms-linear-gradient(top, $from, $to);
+	background-image: -o-linear-gradient(top, $from, $to);
+	background-image: linear-gradient(top, bottom, $from, $to);
+
+}
+
+@mixin rgba-bg ($hex, $alpha, $ie: $useIEFilters) {
+	background-color: $hex;
+	background-color: rgba($hex, $alpha);
+}
+
+@mixin perspective($perspective) {
+	-moz-perspective: $perspective;
+	-ms-perspective: $perspective;
+	-webkit-perspective: $perspective;
+	perspective: $perspective;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+
+@mixin transform ($transforms) {
+	-moz-transform: $transforms;
+	-o-transform: $transforms;
+	-ms-transform: $transforms;
+	-webkit-transform: $transforms;
+	transform: $transforms;
+}
+
+@mixin matrix ($a, $b, $c, $d, $e, $f) {
+	-moz-transform: matrix($a, $b, $c, $d, #{$e}px, #{$f}px);
+	-o-transform: matrix($a, $b, $c, $d, $e, $f);
+	-ms-transform: matrix($a, $b, $c, $d, $e, $f);
+	-webkit-transform: matrix($a, $b, $c, $d, $e, $f);
+	transform: matrix($a, $b, $c, $d, $e, $f);
+}
+
+@mixin rotate ($deg) {
+	@include transform(rotate(#{$deg}deg));
+}
+
+@mixin scale ($size) {
+	@include transform(scale(#{$size}));
+}
+
+@mixin translate ($x, $y) {
+	@include transform(translate($x, $y));
+}
+
+@mixin transition ($value) {
+	-moz-transition: $value;
+	-o-transition: $value;
+	-ms-transition: $value;
+	-webkit-transition: $value;
+	transition: $value;
+}
+
+// ==== /CSS3 SASS MIXINS ====
+
+
+
+// Added by eldh
+
+@mixin filter($filter-type,$filter-amount) {
+	-webkit-filter: $filter-type+unquote('(#{$filter-amount})');
+	-moz-filter: $filter-type+unquote('(#{$filter-amount})');
+	-ms-filter: $filter-type+unquote('(#{$filter-amount})');
+	-o-filter: $filter-type+unquote('(#{$filter-amount})');
+	filter: $filter-type+unquote('(#{$filter-amount})');
+}
+
+@mixin opacity ( $value: 0.5 ) {
+	opacity: $value;
+	filter: alpha(opacity= $value * 100 );
+	zoom: 1;
+}
+
+@mixin horizontal-gradient($from, $middle, $to, $ie: $useIEFilters) {
+	@if $ie != 1 { background-color: transparent; }
+
+	background-image: -webkit-gradient(linear,left top,right top,color-stop(0, $from),color-stop(0.5, $middle),color-stop(1, $to));
+	background-image: -webkit-linear-gradient(left, $from 0%, $middle 50%, $to 100%);
+	background-image: -moz-linear-gradient(left, $from 0%, $middle 50%, $to 100%);
+	background-image: -ms-linear-gradient(left, $from 0%, $middle 50%, $to 100%);
+	background-image: -o-linear-gradient(left, $from 0%, $middle 50%, $to 100%);
+	background-image: linear-gradient(left, right, $from 0%, $middle 50%, $to 100%);
+
+}
+
+
+@mixin triangle($direction, $color, $size) {
+
+	@if $direction == "left" {
+		border-bottom: $size solid transparent;
+		border-right: $size solid $color;
+		border-top: $size solid transparent;
+	}
+	@else if $direction == "right" {
+		border-bottom: $size solid transparent;
+		border-left: $size solid $color;
+		border-top: $size solid transparent;
+	}
+	@else if $direction == "up" {
+		border-bottom: $size solid $color;
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+	}
+	@else if $direction == "down" {
+		border-right: $size solid transparent;
+		border-left: $size solid transparent;
+		border-top: $size solid $color;
+	}
+
+	height: 0;
+	width: 0;
+}
+
+
+
+
+
+/*------------------------------------*\
+	$MIXINS
+\*------------------------------------*/
+/**
+ * Create a fully formed type style (sizing and vertical rhythm) by passing in a
+ * single value, e.g.:
+ *
+	 `@include font-size(10px);`
+ *
+ * Thanks to @redclov3r for the `line-height` Sass:
+ * twitter.com/redclov3r/status/250301539321798657
+ */
+ @mixin font-size($font-size, $line-height:true){
+	font-size:$font-size;
+	font-size:($font-size / $base-font-size)*1rem;
+	@if $line-height == true{
+		line-height:ceil($font-size / $base-line-height) * ($base-line-height / $font-size);
+	}
+ }
+
+
+/**
+ * Style any number of headings in one fell swoop, e.g.:
+ *
+	 .foo{
+		 @include headings(1, 3){
+			 color:#BADA55;
+		 }
+	}
+ *
+ * With thanks to @lar_zzz, @paranoida, @rowanmanning and ultimately
+ * @thierrylemoulec for refining and improving my initial mixin.
+ */
+ @mixin headings($from: 1, $to: 6){
+	%base-heading {
+		@content
+	}
+
+	@if $from >= 1 and $to <= 6{
+		@for $i from $from through $to{
+			h#{$i}{
+				@extend %base-heading;
+			}
+		}
+	}
+ }
+
+
+/**
+ * Create vendor-prefixed CSS in one go, e.g.
+ *
+	 `@include vendor(border-radius, 4px);`
+ *
+ */
+ @mixin vendor($property, $value...){
+	-webkit-#{$property}:$value;
+	-moz-#{$property}:$value;
+	-ms-#{$property}:$value;
+	-o-#{$property}:$value;
+	#{$property}:$value;
+ }
+
+
+/**
+ * Create CSS keyframe animations for all vendors in one go, e.g.:
+ *
+	 .foo{
+		 @include vendor(animation, shrink 3s);
+	 }
+
+	 @include keyframe(shrink){
+		 from{
+			 font-size:5em;
+		 }
+	 }
+ *
+ * Courtesy of @integralist: twitter.com/integralist/status/260484115315437569
+ */
+ @mixin keyframe ($animation-name){
+	@-webkit-keyframes #{$animation-name}{
+		@content;
+	}
+
+	@-moz-keyframes #{$animation-name}{
+		@content;
+	}
+
+	@-ms-keyframes #{$animation-name}{
+		@content;
+	}
+
+	@-o-keyframes #{$animation-name}{
+		@content;
+	}
+
+	@keyframes #{$animation-name}{
+		@content;
+	}
+ }
+
+
+/**
+ * Force overly long spans of text to truncate, e.g.:
+ *
+	 `@include truncate(100%);`
+ *
+ * Where `$truncation-boundary` is a united measurement.
+ */
+ @mixin truncate($truncation-boundary){
+	max-width:$truncation-boundary;
+	white-space:nowrap;
+	overflow-x:hidden;
+	text-overflow:ellipsis;
+ }
+
+
+/**
+ * CSS arrows!!! But... before you read on, you might want to grab a coffee...
+ *
+ * This mixin creates a CSS arrow on a given element. We can have the arrow
+ * appear in one of 12 locations, thus:
+ *
+ *       01    02    03
+ *    +------------------+
+ * 12 |                  | 04
+ *    |                  |
+ * 11 |                  | 05
+ *    |                  |
+ * 10 |                  | 06
+ *    +------------------+
+ *       09    08    07
+ *
+ * You pass this position in along with a desired arrow color and optional
+ * border color, for example:
+ *
+ * `@include arrow(top, left, red)`
+ *
+ * for just a single, red arrow, or:
+ *
+ * `@include arrow(bottom, center, red, black)`
+ *
+ * which will create a red triangle with a black border which sits at the bottom
+ * center of the element. Call the mixin thus:
+ *
+	 .foo{
+		 background-color:#BADA55;
+		 border:1px solid #ACE;
+		 @include arrow(top, left, #BADA55, #ACE);
+	 }
+ *
+ */
+ @mixin arrow($arrow-edge, $arrow-location, $arrow-color, $border-color: $arrow-color){
+
+	$arrow-size:            $half-spacing-unit!default;
+	$arrow-border:          1!default;
+	$border:                $arrow-size;
+	$arrow:                 $arrow-size - $arrow-border;
+
+
+
+	&:before,
+	&:after{
+		content:"";
+		position:absolute;
+		border-collapse:separate;
+	}
+	&:before{
+		border:$border solid transparent;
+	}
+	&:after{
+		border:$arrow solid transparent;
+	}
+	@if $arrow-edge == top{
+
+		&:before,
+		&:after{
+			bottom:100%;
+		}
+		&:before{
+			border-bottom-color:$border-color!important;
+		}
+
+		&:after{
+			border-bottom-color:$arrow-color!important;
+		}
+
+		@if $arrow-location == left {
+			&:before{
+				left:$arrow;
+			}
+			&:after{
+				left:$border;
+			}
+		}
+
+		@if $arrow-location == center {
+			&:before,
+			&:after {
+				left:50%;
+				margin-left:-$border;
+			}
+			&:after {
+				margin-left:-$arrow;
+			}
+		}
+
+		@if $arrow-location == right {
+			&:before{
+				right:$arrow;
+			}
+			&:after{
+				right:$border;
+			}
+		}
+
+	}
+
+	@if $arrow-edge == right{
+
+		&:before,
+		&:after{
+			left:100%;
+		}
+
+		&:before{
+			border-left-color:$border-color!important;
+		}
+
+		&:after{
+			border-left-color:$arrow-color!important;
+		}
+
+		@if $arrow-location == top{
+			&:before{
+				top:$arrow;
+			}
+			&:after{
+				top:$border;
+			}
+		}
+
+		@if $arrow-location == center{
+			&:before,
+			&:after{
+				top:50%;
+				margin-top:-$border;
+			}
+			&:after{
+				margin-top:-$arrow;
+			}
+		}
+
+		@if $arrow-location == bottom{
+			&:before{
+				bottom:$arrow;
+			}
+			&:after{
+				bottom:$border;
+			}
+		}
+
+	}
+
+	@if $arrow-edge == bottom {
+
+		&:before,
+		&:after{
+		}
+
+		&:before{
+			bottom: -$base-spacing-unit;
+			border-top-color:$border-color!important;
+		}
+
+		&:after{
+			border-top-color:$arrow-color!important;
+			bottom: -$base-spacing-unit + 2;
+		}
+
+		@if $arrow-location == left{
+			&:before {
+				left:$arrow;
+			}
+			&:after{
+				left:$border;
+			}
+		}
+
+		@if $arrow-location == center{
+			&:before,
+			&:after{
+				left:50%;
+				margin-left:-$border;
+			}
+			&:after{
+				margin-left:-$arrow;
+			}
+		}
+
+		@if $arrow-location == right{
+			&:before{
+				right:$arrow;
+			}
+			&:after{
+				right:$border;
+			}
+		}
+
+	}
+
+	@if $arrow-edge == left{
+
+
+		&:before{
+			border-right-color:$border-color!important;
+		}
+
+		&:after{
+			border-right-color:$arrow-color!important;
+		}
+
+		@if $arrow-location == top{
+			&:before{
+				top:$arrow;
+			}
+			&:after{
+				top:$border;
+			}
+		}
+
+		@if $arrow-location == center{
+			&:before,
+			&:after{
+				top:50%;
+				margin-top:-$border;
+			}
+			&:after{
+				margin-top:-$arrow;
+			}
+		}
+
+		@if $arrow-location == bottom{
+			&:before{
+				bottom:$arrow;
+			}
+			&:after{
+				bottom:$border;
+			}
+		}
+
+	}
+
+ }
+
+
+/**
+ * Media query mixin.
+ *
+ * It’s not great practice to define solid breakpoints up-front, preferring to
+ * modify your design when it needs it, rather than assuming you’ll want a
+ * change at ‘mobile’. However, as inuit.css is required to take a hands off
+ * approach to design decisions, this is the closest we can get to baked-in
+ * responsiveness. It’s flexible enough to allow you to set your own breakpoints
+ * but solid enough to be frameworkified.
+ *
+ * We define some broad breakpoints in our vars file that are picked up here
+ * for use in a simple media query mixin. Our options are:
+ *
+ * palm
+ * lap
+ * lap-and-up
+ * portable
+ * desk
+ * desk-wide
+ *
+ * Not using a media query will, naturally, serve styles to all devices.
+ *
+ * `@include media-query(palm){ [styles here] }`
+ *
+ * We work out your end points for you:
+ */
+ $lap-end:               $desk-start - 1px!default;
+ $palm-end:              $lap-start - 1px !default;
+
+ @mixin media-query($media-query){
+
+	@if $media-query == palm{
+
+		@media only screen and (max-width:$palm-end) { @content; }
+
+	}
+
+	@if $media-query == lap{
+
+		@media only screen and (min-width:$lap-start) and (max-width:$lap-end) { @content; }
+
+	}
+
+	@if $media-query == lap-and-up{
+
+		@media only screen and (min-width:$lap-start) { @content; }
+
+	}
+
+	@if $media-query == portable{
+
+		@media only screen and (max-width:$lap-end) { @content; }
+
+	}
+
+	@if $media-query == desk{
+
+		@media only screen and (min-width:$desk-start) { @content; }
+
+	}
+
+	@if $media-query == desk-wide{
+
+		@media only screen and (min-width: $desk-wide-start) { @content; }
+
+	}
+
+	@else {
+		@media only screen and (max-width: $media-query) { @content; }
+	}
+
+ }
+
+
+@mixin layer {
+	backface-visibility: hidden;
+}
+
+@mixin touch-scroll {
+	overflow-y: auto;
+	.touch & {
+		overflow-y: scroll; /* has to be scroll, not auto */
+		-webkit-overflow-scrolling: touch;
+	}
+}
+
+
+@mixin tap {
+	&:active,
+	&:active:hover,
+	&.touch-feedback:hover,
+	&.touch-feedback {
+		@content;
+	}
+}

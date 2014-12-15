@@ -1,0 +1,64 @@
+.searchbox {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+.searchbox__spinner {
+	position: absolute;
+	right: $half-spacing-unit / 2;
+	top: $base-spacing-unit;
+	width: $base-spacing-unit * 2;
+	height: $base-spacing-unit * 2;
+}
+.searchbox__input {
+	display: inline-block;
+	zoom: 1;
+	// -webkit-appearance: none !important;  
+  -webkit-border-radius:0px;
+	width: 100%;
+	line-height: $base-line-height * 1.5;
+	border: $inverted-border;
+	margin: $base-spacing-unit 0;
+	padding: 0 $half-spacing-unit;
+	border-radius: $base-spacing-unit;
+	height: $base-spacing-unit * 2;
+	background-color: $background-color;
+	outline: 0;
+	cursor: text;
+	-moz-outline: 0;
+	-webkit-appearance: none !important;
+	.no-touch & {
+		transition: all $transition-speed $transition-easing;
+	}
+	&:hover, &:focus {
+		border: $inverted-action-border;
+	}
+	&:focus, &:active {
+		border: $inverted-action-border;
+		background-color: $background-color;
+	}
+	&[disabled], &:disabled, &.disabled, &.inactive {
+		box-shadow: none;
+	}
+	&.touch-feedback {
+		background-color: mix($background-color, $action-color, $tint);
+	}
+}
+
+.searchbox__clear {
+	position: absolute;
+	color: $quiet-color;
+	padding: $half-spacing-unit $base-spacing-unit;
+	top: $half-spacing-unit * 2;
+	font-size: $base-spacing-unit;
+	line-height: 1;
+	margin-left: - ($base-spacing-unit * 2.5);
+	cursor: pointer;
+	&:hover {
+		color: $action-color;
+	}
+}
+::-webkit-input-placeholder {
+	line-height: $base-spacing-unit * 1.67777777777777;
+}

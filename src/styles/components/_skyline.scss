@@ -1,0 +1,17 @@
+.skyline {
+	> svg {
+		position: fixed;
+		bottom: $footer-height - 1;
+		width: 100%;
+	}
+}
+#skyline__group {
+	width: 100%;
+	z-index: -11111111111;
+	position: fixed;
+	// height: 10.7%;
+	fill: darken($body-background, 10%) !important;
+}
+#skyline__path {
+	fill: darken($body-background, 10%) !important;
+}

@@ -1,0 +1,133 @@
+
+
+html{
+    font:#{($base-font-size/16px)*1em}/#{$line-height-ratio} $base-font-family;
+    overflow-y:scroll;
+    min-height:100%;
+    font-weight: 500;
+}
+
+body, button, input {
+	color: $font-color;
+	// -webkit-font-smoothing: antialiased;
+}
+::selection {
+	background: mix($action-color, $font-color, $fat-tint);
+	color: $background-color;
+}
+::-moz-selection {
+	background: mix($action-color, $font-color, $fat-tint);
+	color: $background-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: $base-line-height;
+	margin-bottom: 0;
+}
+h1, h2, h3 {
+	font-weight: 500;
+	text-rendering: optimizeLegibility;
+	font-family: $h-face;
+	// margin-bottom: $base-spacing-unit;
+}
+h4 {
+	font-weight: 500;
+	margin-bottom: $base-spacing-unit;
+}
+h5, h6 {
+	font-weight: 500;
+}
+h1 {
+	line-height: $base-line-height *5;
+}
+h2 {
+	line-height: $base-line-height *3;
+	margin-bottom: $base-spacing-unit;
+}
+h3 {
+	line-height: $base-line-height *2;
+	margin-bottom: $base-spacing-unit;
+}
+h5 {
+	text-transform: uppercase;
+}
+p {
+	margin-bottom: $base-spacing-unit;
+}
+
+.section-heading {
+	margin-top: $base-spacing-unit * 2;
+	margin-bottom: $base-spacing-unit;
+}
+
+.h1-size {
+	@extend .bottom-margin;
+	@extend .alpha;
+}
+
+.beefcake,
+.strong {
+	font-weight:700;
+}
+
+.weak {
+	font-weight: 300;
+}
+
+.bigger {
+	@include font-size($h3-size);
+	line-height: $base-line-height * 1.5;
+}
+.centi {
+    @include font-size($centi-size);
+}
+.small,
+.milli {
+    @include font-size($milli-size);
+}
+.micro,
+.tiny {
+    @include font-size($micro-size);
+}
+
+.quiet {
+	color: mix($font-color, $background-color, 50%);
+}
+
+.em, .italic {
+	font-style: italic;
+}
+
+.one-line {
+	line-height: $base-line-height;
+}
+.two-lines {
+	line-height: $base-line-height * 2;
+}
+.three-lines {
+	line-height: $base-line-height * 3;
+}
+
+.right {
+	text-align: right;
+}
+
+@mixin font-size-micro () {
+	@include font-size($micro-size);
+	font-weight: 500;
+	// letter-spacing: 1px;
+}
+@mixin font-size-milli () {
+	@include font-size($milli-size);
+	font-weight: 500;
+	// letter-spacing: 1px;
+}
+@mixin font-size-centi () {
+	@include font-size($centi-size);
+	font-weight: 500;
+	// letter-spacing: 1px;
+}
+@mixin font-size-deci () {
+	@include font-size($deci-size);
+	// letter-spacing: 1px;
+}

@@ -1,0 +1,17 @@
+CACHE MANIFEST
+# version 0.1
+
+CACHE:
+# html files
+
+# js files
+# main-bundle.js
+
+# css files
+
+# images
+icon.png
+
+NETWORK:
+
+*

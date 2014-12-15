@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.eldh.deninreresan" version="0.1.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+	<name>Den Inre Resan</name>
+	<description>
+		Hitta rätt i Stockohlms kollektivtrafik.
+	</description>
+	<author email="andreaseldh@gmail.com" href="http://eldh.co">
+		Eldh
+	</author>
+	<content src="index.html"/>
+	<access origin="*" />
+
+
+	<platform name="ios">
+		<!-- images are determined by width and height. The following are supported -->
+		<icon src="src/resources/common/img/apple-touch-icon-76x76.png" width="76" height="76" />
+		<icon src="src/resources/common/img/apple-touch-icon-120x120.png" width="120" height="120" />
+		<icon src="src/resources/common/img/apple-touch-icon-152x152.png" width="152" height="152" />
+		<icon src="src/resources/common/img/apple-touch-icon-157x157.png" width="157" height="157" />
+		<icon src="src/resources/common/img/apple-touch-icon-180x180.png" width="180" height="180" />
+		<splash src="src/resources/common/img/splash-640x960.png" width="640" height="960"/>
+		<splash src="src/resources/common/img/splash-640x1136.png" width="640" height="1136"/>
+		<splash src="src/resources/common/img/splash-750x1334.png" width="750" height="1334"/>
+		<splash src="src/resources/common/img/splash-768x1024.png" width="768" height="1024"/>
+		<splash src="src/resources/common/img/splash-1536x2048.png" width="1536" height="2048"/>
+	</platform>
+
+	<preference name="StatusBarOverlaysWebView" value="true"/>
+	<preference name="StatusBarBackgroundColor" value="#000000"/>
+	<preference name="StatusBarStyle" value="lightcontent" />
+	<preference name="DisallowOverscroll" value="true" />
+
+</widget>

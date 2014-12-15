@@ -1,0 +1,29 @@
+.station-icons {
+	display: flex;
+	flex-wrap: wrap;
+}
+.station-icons__btn {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	width: 33.3333333333%;
+	height: $base-spacing-unit * 4;
+	height: 0;
+	padding-top: 33.333333333333%;
+	> .icon {
+		margin-top: -100%;
+	}
+	&.touch-feedback, &:active {
+		background-color: $action-color-inverted;
+	}
+	&:nth-child(1),
+	&:nth-child(2),
+	&:nth-child(3) {
+	}
+	&:nth-child(3n + 1) {
+	}
+}
+.station-icons__btn--used > * {
+	opacity: 0.5;
+}

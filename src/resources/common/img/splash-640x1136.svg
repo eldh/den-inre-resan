@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="640px" height="1136px" viewBox="0 0 640 1136" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>splash-640x1136</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="640" height="1136"></rect>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="8.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 0.998009334   0 0 0 0 0.955855389  0 0 0 0.7 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="8.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 0.998009334   0 0 0 0 0.955855389  0 0 0 0.7 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Group-copy" sketch:type="MSLayerGroup">
+            <mask id="mask-2" sketch:name="Rectangle 6" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Rectangle-6" fill="#132033" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+            <g id="Group" mask="url(#mask-2)" transform="translate(-130.000000, -67.000000)" sketch:type="MSShapeGroup">
+                <rect id="Rectangle-2-copy" fill="#132033" x="95" y="285" width="711" height="711"></rect>
+                <path d="M901,0 L780.866667,568.272727 C772.802873,619.416749 725.362635,658 675.75,658 L225.25,658 C174.649299,658 127.275424,619.410987 120.133333,568.272727 L0,0 L82.5916667,0 L818.408333,0 L901,0 Z M812,47 L732.16875,528.045455 C725.293605,571.339102 684.846327,604 642.546875,604 L258.453125,604 C215.311253,604 174.920556,571.334224 168.83125,528.045455 L89,47 L136.823437,47 L764.176563,47 L812,47 Z" id="Rectangle-1-copy" opacity="0.08" fill="#6BAAFF"></path>
+                <path d="M95,1229 L806,1229 L806,876.923077 C772.359421,903.622017 725.402529,924.344155 681.575,924.307692 L225.35,924.307692 C175.403314,924.344155 125.768003,902.759562 95,871 L95,1229 Z" id="Rectangle-1-copy" opacity="0.08" fill="#6BAAFF"></path>
+                <g id="Oval-1-+-Oval-1-copy-2" transform="translate(210.000000, 732.000000)" fill="#FBFBF2">
+                    <path d="M72.5,146 C113.092931,146 146,113.092931 146,72.5 C146,31.9070689 113.092931,-1 72.5,-1 C31.9070689,-1 -1,31.9070689 -1,72.5 C-1,113.092931 31.9070689,146 72.5,146 Z" id="Oval-1" filter="url(#filter-3)"></path>
+                    <path d="M406,146 C446.316789,146 479,113.316789 479,73 C479,32.6832113 446.316789,0 406,0 C365.683211,0 333,32.6832113 333,73 C333,113.316789 365.683211,146 406,146 Z" id="Oval-1-copy" filter="url(#filter-4)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

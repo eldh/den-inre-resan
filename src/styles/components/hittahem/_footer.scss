@@ -1,0 +1,45 @@
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	flex-grow: 0;
+	flex-shrink: 0;
+	width: 100%;
+	z-index: 1000;
+	display: flex;
+	color: $footer-font-color;
+	background-color: $footer-bar-color;
+	align-items: stretch;
+	justify-content: stretch;
+	&, * {user-select: none !important;}
+	// g, svg, path {
+	// 	color: $header-font-color!important;
+	// 	fill: $header-font-color !important;
+	// }
+}
+.footer__placeholder-btn {
+	font-size: $icon-size;
+}
+.footer__placeholder-btn,
+.footer__btn {
+	width: 25%;
+	flex-grow: 1;
+	height: $footer-height;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	border-radius: 0;
+	border: 0;
+	&:focus {
+		outline: none;
+	}
+	&:active,
+	&.touch-feedback {
+		outline: none;
+		background-color: $action-color-inverted;
+	}
+}
+.footer__btn.btn--selected {
+	background-color: $action-color-inverted;
+}

@@ -1,0 +1,40 @@
+.overlayer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	overflow: auto;
+	padding: $header-height $base-spacing-unit 0;
+	.ios-web-app & {
+		padding-top: $header-height + 20;
+	}
+	background-color: $header-bar-color;
+	color: $header-font-color;
+	z-index: 1000;
+	-webkit-overflow-scrolling: touch;
+}
+.overlayer__back,
+.overlayer__cancel {
+	position: absolute;
+	line-height: $header-height;
+	.ios-web-app & {
+		padding-top: 20px;
+	}
+	top: 0;
+	right: 0;
+	padding-right: $base-spacing-unit;
+	padding-left: $base-spacing-unit;
+	z-index: 10;
+}
+
+.overlayer__back {
+	right: auto;
+	left: 0;
+}
+
+.overlayer__heading {
+	text-align: center;
+	margin: auto;
+	margin-bottom: 0;
+}

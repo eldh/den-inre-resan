@@ -1,0 +1,61 @@
+{
+  "name": "hittahem-front",
+  "version": "0.0.1",
+  "dependencies": {
+    "coffee-script": "*",
+    "omniscient": "~1.2.0",
+    "reflux": "~0.1.13"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^1.0.0",
+    "coffee-loader": "^0.7.2",
+    "cookie-parser": "^1.3.2",
+    "css-loader": "^0.9.0",
+    "del": "^0.1.1",
+    "ejs": "^1.0.0",
+    "es6-promise": "^1.0.0",
+    "exports-loader": "^0.6.2",
+    "expose-loader": "^0.5.3",
+    "fastclick": "git://github.com/ftlabs/fastclick.git#75b0aa07910a7d8dd77b7d662e97ddddcf0837a6",
+    "file-loader": "^0.7.2",
+    "gulp": "~3.8.5",
+    "gulp-autoprefixer": "^1.0.1",
+    "gulp-csso": "~0.2.9",
+    "gulp-debug": "~1.0.0",
+    "gulp-grep-stream": "0.0.2",
+    "gulp-notify": "^1.8.0",
+    "gulp-plumber": "~0.6.4",
+    "gulp-rename": "~1.2.0",
+    "gulp-sass": "^1.2.0",
+    "gulp-template": "^1.1.0",
+    "gulp-util": "~3.0.0",
+    "imports-loader": "^0.6.3",
+    "jest-cli": "^0.1.17",
+    "jquery": "^2.1.1",
+    "jshint-loader": "^0.8.0",
+    "json-loader": "^0.5.1",
+    "lodash": "~2.4.1",
+    "moment": "~2.8.0",
+    "portfinder": "~0.2.1",
+    "react": "~0.12.1",
+    "react-hot-loader": "^0.4.2",
+    "react-router": "~0.11.2",
+    "run-sequence": "^1.0.0",
+    "sass-loader": "git://github.com/eldh/sass-loader.git#master",
+    "spin.js": "^2.0.1",
+    "style-loader": "^0.8.0",
+    "url-loader": "^0.5.5",
+    "velocity-animate": "^1.0.1",
+    "webpack": "^1.4.0",
+    "webpack-dev-server": "^1.6.3",
+    "raw-loader": "~0.5.1",
+    "script-loader": "~0.6.1",
+    "webpack-cordova-plugin": "~0.1.5"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "scripts": {
+    "test": "jest --config=jest/config.json"
+  }
+}
