@@ -30,14 +30,10 @@ FeatureToggler.initialize()
 # Tracking.initialize()
 # TravelStore.init()
 
-console.log 'isCordova', isCordova
 if isCordova
-
 	onDeviceReady = ->
-		console.log 'onDeviceReady'
 		document?.body?.classList?.add? 'ios-web-app'
 		ReactRouter.initialize()
 	document.addEventListener 'deviceready', onDeviceReady, false
 else
-	console.log 'not cordova'
 	ReactRouter.initialize()
