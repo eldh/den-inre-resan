@@ -2,6 +2,7 @@ Reflux = require 'reflux'
 Actions = require '../actions/place--actions'
 Config = require '../config/config'
 _ = require 'lodash'
+Tracking = require '../tracking/tracking'
 
 module.exports = Reflux.createStore
 
@@ -27,10 +28,12 @@ module.exports = Reflux.createStore
 		]
 
 	onSetPlace: (data) ->
+		
 		if data.station
 			data.station.Name = @cleanStationName data.station.Name
 		@data[data.spot] = _.extend @data[data.spot], data
 		window.localStorage.setItem 'denInreResanPlaces', JSON.stringify @data
+		Tracking.trackEvent(Tracking.CATEGORIES.PLACES, Tracking.EVENTS.PLACES.ADDED)
 		@trigger @data
 
 	cleanStationName: (str) ->

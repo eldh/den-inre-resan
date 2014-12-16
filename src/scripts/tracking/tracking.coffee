@@ -1,8 +1,4 @@
-BackboneHistory = require('backbone').history
 Config = require '../config/config'
-OnError = require '../utils/on-javascript-error'
-BackboneModels = require '../utils/backbone-models'
-UserModel = require '../user/user-model'
 
 _initialized = false
 
@@ -50,10 +46,9 @@ _loadTracker = ->
 		a.src = g
 		m.parentNode.insertBefore a, m
 	) window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga'
-
 	window.ga('create', containerId, 'auto')
 	# TODO: do this manually from the entry point
-	# window.ga('send', 'pageview')
+	window.ga('send', 'pageview')
 
 _setCustomDimension = (dimension, value) ->
 	window.ga 'set', _getDimensionId(dimension), value
@@ -63,11 +58,6 @@ module.exports =
 	initialize: ->
 		return if Config.get 'analytics-disabled'
 		_loadTracker()
-
-		OnError _trackErrorEvent
-
-		userModel = BackboneModels.get(UserModel)
-
 
 		_initialized = true
 
@@ -81,8 +71,8 @@ module.exports =
 
 	EVENTS:
 		TRAVEL:
-			TRAVEL_SEARCH: 'Travel search'
-			TRAVEL_AUTOSEARCH: 'Travel auto-search'
+			SEARCH: 'Travel search'
+			AUTOSEARCH: 'Travel auto-search'
 		PLACES:
-			PLACE_ADDED: 'Place added'
-			PLACE_EDITED: 'Place edited'
+			ADDED: 'Place added'
+			EDITED: 'Place edited'

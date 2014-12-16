@@ -4,6 +4,7 @@ PlaceStore = require '../stores/place--store'
 Reflux = require 'reflux'
 Config = require '../config/config'
 _ = require 'lodash'
+Tracking = require '../tracking/tracking'
 
 module.exports = Reflux.createStore
 
@@ -51,6 +52,7 @@ module.exports = Reflux.createStore
 			originCoordName: position.name or 'Nuvarande plats'
 			destId: data.destId
 			name: data.name
+		Tracking.trackEvent(Tracking.CATEGORIES.TRAVEL, Tracking.EVENTS.TRAVEL.SEARCH)
 		Api.searchTrip(data, _.bind(@onSearchTripDone(data.destId), this), false)
 		@trigger @data
 

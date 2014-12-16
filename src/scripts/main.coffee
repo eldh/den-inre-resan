@@ -5,7 +5,7 @@ SetupHandler = require './utils/ajax-setup-handler'
 FeatureToggler = require './feature/feature-toggler'
 ReactRouter = require './base/react-router'
 TravelStore = require './stores/travel--store'
-# Tracking = require 'tracking/tracking'
+Tracking = require 'tracking/tracking'
 window.jQuery = window.$ = require 'jquery'	# expose jQuery so dependencies to window.jQuery works
 
 require 'expose-loader?React!react'
@@ -20,17 +20,15 @@ if Function.name is undefined
 			value: name
 		name
 
-
-isCordova = document.URL.indexOf('http://') is -1 and document.URL.indexOf('https://') is -1
+SetupHandler.initialize()
+FeatureToggler.initialize()
+Tracking.initialize()
+# TravelStore.init()
 
 if window.navigator.standalone
 	document.body.classList.add 'ios-web-app'
-SetupHandler.initialize()
-FeatureToggler.initialize()
-# Tracking.initialize()
-# TravelStore.init()
 
-if isCordova
+if document.URL.indexOf('http://') is -1 and document.URL.indexOf('https://') is -1
 	onDeviceReady = ->
 		document?.body?.classList?.add? 'ios-web-app'
 		ReactRouter.initialize()
