@@ -1,0 +1,30 @@
+{
+	"apis": {
+		"resrobot": {
+			"url": "[URL]",
+			"params": {
+			}
+		},
+		"realtidsinfo": {
+			"url": "[URL]",
+			"params": {
+			}
+		},
+		"reseplanerare": {
+			"url": "[URL]",
+			"params": {
+			}
+		},
+		"platsuppslag": {
+			"url": "[URL]",
+			"params": {
+			}
+		}
+	},
+	"ff": [
+	],
+	"analytics-id": "",
+	"analytics-disabled": true,
+	"custom-dimensions": {
+	}
+}
