@@ -15,9 +15,7 @@ module.exports = Reflux.createStore
 		@data = JSON.parse(window.localStorage.getItem('denInreResanPlaces'))or []
 
 	onRemovePlace: (data) ->
-		console.log data
 		@data.splice(+data.spot, 1)
-		console.log @data
 		window.localStorage.setItem 'denInreResanPlaces', JSON.stringify @data
 		@trigger @data
 

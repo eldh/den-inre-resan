@@ -74,9 +74,9 @@ DevServer = (port, appPath) ->
 
 	server.listen port, (err, result) ->
 		if (err)
-			console.log(err);
+			console.info(err);
 
-		console.log('Listening at port ' + port);
+		console.info('Listening at port ' + port);
 
 	server
 

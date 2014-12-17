@@ -18,7 +18,6 @@ module.exports = React.createClass
 
 	render: ->
 		realPlaces = _.find @props.places, (place) -> place.station?
-		console.log realPlaces
 		@div {className: 'start-page'},
 			if realPlaces
 				[
