@@ -64,4 +64,5 @@ module.exports = React.createClass
 		StationSearchActions.clear()
 
 	onCancel: ->
+		PlaceActions.removePlace spot: @props.spot
 		@transitionTo 'travel', spot: @props.spot

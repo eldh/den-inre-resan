@@ -2,6 +2,7 @@ React = require 'react/addons'
 Reflux = require 'reflux'
 Navigation = require('react-router').Navigation
 TravelActions = require '../../actions/travel--actions'
+PlaceActions = require '../../actions/place--actions'
 Icon = React.createFactory require '../../icons/icon'
 Button = React.createFactory require '../../viewcomponents/button'
 _ = require 'lodash'
@@ -17,6 +18,7 @@ module.exports = React.createClass
 		selected: React.PropTypes.number
 
 	render: ->
+		maxLength = @getMaxLength()
 		React.createElement 'div', {className: 'footer'},
 			_.map @props.places, (place, i) =>
 				Button
@@ -28,18 +30,25 @@ module.exports = React.createClass
 					dataset: 
 						station: i
 				, 
-					if place.icon
-						Icon {name: place.icon, inverted: true}
-					else
-						React.createElement 'div', {className: 'footer__placeholder-btn'}, i + 1
+					Icon {name: place.icon, inverted: true}
+			if @props.places.length < maxLength
+				Button
+					onClick: @onClick
+					className: "footer__btn footer__btn--placeholder"
+					key: 'newPlace'
+					dataset: 
+						station: @props.places.length 
+				, 
+						React.createElement 'div', {className: 'footer__placeholder-icon'}, '+'
+
 
 	onLongPress: (index) ->
 		=> 
 			if @props.places[index]?.station
 				@transitionTo 'place', {spot: index}
 			else
-				@transitionTo 'place/search', {spot: index}, {create: true}
-
+				@createPlace index
+	
 	onClick: (e) ->
 		index = e.currentTarget.dataset.station
 		if @props.places[index]?.station
@@ -51,4 +60,11 @@ module.exports = React.createClass
 			else	
 				@transitionTo 'travel', {spot: index}
 		else
-			@transitionTo 'place/search', {spot: index}, {create: true}
+			@createPlace index
+
+	createPlace: (index) ->
+		PlaceActions.setPlace {spot: +index}
+		@transitionTo 'place/search', {spot: index}, {create: true}
+
+	getMaxLength: ->
+		Math.floor window.innerWidth / (40 + 15 * 2) # Magic number, height of footer

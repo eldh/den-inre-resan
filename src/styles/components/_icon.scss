@@ -1,4 +1,6 @@
 $icon-size: 24px;
+$icon-size--l: 32px;
+$icon-size--xl: 64px;
 .icon {
 	display: inline-block;
 	height: $base-spacing-unit * 2;
@@ -18,20 +20,20 @@ $icon-size: 24px;
 	}
 }
 .icon--l {
-	height: $base-spacing-unit * 4;
-	width: $base-spacing-unit * 4;
-	padding: ($base-spacing-unit * 4 - $icon-size * 2) / 2;	
+	height: $base-spacing-unit * 2;
+	width: $base-spacing-unit * 2;
+	padding: ($base-spacing-unit * 2 - $icon-size--l) / 2;	
 	> svg {
-		width: $icon-size * 2;
-		height: $icon-size * 2;
+		width: $icon-size--l;
+		height: $icon-size--l;
 	}
 }
 .icon--xl {
-	height: $base-spacing-unit * 5;
-	width: $base-spacing-unit * 5;
-	padding: ($base-spacing-unit * 5 - $icon-size * 3) / 2;	
+	height: $base-spacing-unit * 4;
+	width: $base-spacing-unit * 4;
+	padding: ($base-spacing-unit * 4 - $icon-size--xl) / 2;	
 	> svg {
-		width: $icon-size * 3;
-		height: $icon-size * 3;
+		width: $icon-size--xl;
+		height: $icon-size--xl;
 	}
 }

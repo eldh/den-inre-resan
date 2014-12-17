@@ -18,3 +18,38 @@
 		width: calc(100%);
 	}
 }
+.start-page__no-places {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	margin: auto;
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	bottom: $base-spacing-unit;
+	> .icon { 
+		animation: bounce ease 1.6s;
+		animation-iteration-count: infinite;
+		path {
+			fill: $header-bar-color;
+			transform: none;
+		}
+	}
+}
+
+.input--changed {
+}
+
+@keyframes bounce {
+	0% {
+		transform: translateY(0);
+	}
+	33% {
+		transform: translateY($half-spacing-unit);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}

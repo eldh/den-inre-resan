@@ -9,21 +9,20 @@
 	display: flex;
 	color: $footer-font-color;
 	background-color: $footer-bar-color;
-	align-items: stretch;
-	justify-content: stretch;
+	align-items: center;
+	justify-content: center;
 	&, * {user-select: none !important;}
 	// g, svg, path {
 	// 	color: $header-font-color!important;
 	// 	fill: $header-font-color !important;
 	// }
 }
-.footer__placeholder-btn {
+.footer__placeholder-icon {
 	font-size: $icon-size;
 }
-.footer__placeholder-btn,
 .footer__btn {
 	width: 25%;
-	flex-grow: 1;
+	flex-grow: 0;
 	height: $footer-height;
 	display: flex;
 	justify-content: center;
