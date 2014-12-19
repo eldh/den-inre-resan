@@ -15,6 +15,7 @@ $footer-height: $base-spacing-unit * 4 !default;
 	z-index: 1;
 	overflow-y: scroll; /* has to be scroll, not auto */
 	-webkit-overflow-scrolling: touch;
+	// @include layer;
 	.ios-web-app & {
 		top: $header-height + 20;
 	}

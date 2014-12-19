@@ -5,12 +5,13 @@
 	flex-grow: 0;
 	flex-shrink: 0;
 	width: 100%;
-	z-index: 1000;
+	// z-index: 1000;
 	display: flex;
 	color: $footer-font-color;
 	background-color: $footer-bar-color;
 	align-items: center;
 	justify-content: center;
+	@include layer;
 	&, * {user-select: none !important;}
 	// g, svg, path {
 	// 	color: $header-font-color!important;

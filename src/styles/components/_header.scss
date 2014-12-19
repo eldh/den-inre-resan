@@ -13,7 +13,7 @@ header {
 	padding: 0 $base-spacing-unit 0 0;
 	background-color: $header-bar-color;
 	color: $header-font-color;
-	z-index: 200;
+	// z-index: 200;
 	transition: background-color $transition-easing $transition-speed;
 	.ios-web-app & {
 		height: $header-height + 20;

@@ -1,4 +1,5 @@
 .skyline {
+	@include layer;
 	> svg {
 		position: fixed;
 		bottom: $footer-height - 1;

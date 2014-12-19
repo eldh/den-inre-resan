@@ -38,3 +38,17 @@
 	position: absolute;
 	width: 1px;
 }
+
+.velocity-animating {
+}
+.way-back,
+.way-front {
+	top: 0;
+	left: 0;
+	width: 100%;
+	position: absolute;
+	// z-index: -10000000 !important;
+}
+.way-front {
+	z-index: 10000000 !important;
+}

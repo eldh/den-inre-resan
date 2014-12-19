@@ -5,7 +5,8 @@ Reflux = require 'reflux'
 PlaceStore = require '../stores/place--store'
 TravelActions = require '../actions/travel--actions'
 TouchSupportMixin = require '../mixins/touch-support'
-VelocityTransition = React.createFactory require '../viewcomponents/transition/velocity-transition'
+VelocityTransition = React.createFactory require '../viewcomponents/transition/velocity-page-transition'
+TransitionGroup = require('react/lib/ReactCSSTransitionGroup');
 RouteHandler = React.createFactory Router.RouteHandler
 
 module.exports = React.createClass 
@@ -18,15 +19,37 @@ module.exports = React.createClass
 		@listenTo PlaceStore, @onPlaceDataChange, @onPlaceDataChange
 
 	onPlaceDataChange: (data) ->
-		@setState 
+		@setState
 			places: data
 
-	getInitialState: -> {}
+	getInitialState: ->
+		transition: 'overlayerIn'
+
+	componentWillReceiveProps: (newProps) ->
+		name = @getRoutes().reverse()[0].name
+
+		goingToPlace = name.indexOf('place') > -1
+		transitionProps = {}
+		if goingToPlace 
+			transitionProps =
+				transition: 'slideUp'
+				enter: true
+				leave: true
+		else
+			transitionProps =
+				transition: 'slideDown'
+				enter: true
+				leave: true
+		@setState
+			transitionProps: transitionProps
 
 	render: ->
-		RouteHandler
-			params: @getParams()
-			routes: @getRoutes()
-			query: @getQuery()
-			places: @state.places
-			key: @getParams().spot + @getRoutes()[1]?.name
+		name = @getRoutes().reverse()[0].name
+		# TransitionGroup {transitionName: @state.transition},
+		VelocityTransition @state.transitionProps,
+			RouteHandler
+				params: @getParams()
+				routes: @getRoutes()
+				query: @getQuery()
+				places: @state.places
+				key: name
