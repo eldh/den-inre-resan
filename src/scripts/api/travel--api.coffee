@@ -34,25 +34,19 @@ module.exports =
 	searchTrip: (data, callback, mock = false) ->
 		api = Config.get 'apis.reseplanerare'
 
+		console.log data.time
 		defaults =
 			originCoordLat: 59.347754
 			originCoordLong: 17.883724
 			originCoordName: 'Nuvarande plats'
 			destId: 9601
-			time: @getTime()
 
 		data = _.extend defaults, data
+		console.log data.time
 		@makeRequest
 			url: "#{api.url}#{if mock then 'mock' else ''}"
 			data: data
 			success: callback
-
-
-	getTime: ->
-		date = new Date()
-		date.setMinutes(date.getMinutes()-4)
-		"#{date.getHours()}:#{date.getMinutes()}"
-
 
 	makeRequest: (options = {}) ->
 		request = $.ajax

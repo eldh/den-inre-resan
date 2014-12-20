@@ -27,7 +27,8 @@ module.exports = React.createClass
 	onTravelDataChange: (data) ->
 		@setState data
 
-	getInitialState: -> {}
+	getInitialState: ->
+		TravelStore.getDefaultData()
 
 	performSearch: (props) ->
 		props = props or @props
@@ -35,12 +36,12 @@ module.exports = React.createClass
 			# debugger
 			TravelActions.searchTrip props.places[selected]?.station
 
-	searchingForWrongPlace: ->
+	loadingWrongPlace: ->
 		# Hack!
-		searchingFor = @state.query?.destId
-		shouldBeSearchingFor = @props.places?[@getSelected()]?.station?.SiteId
+		loading = @state.query?.destId
+		shouldBeLoading = @props.places?[@getSelected()]?.station?.SiteId
 
-		searchingFor and shouldBeSearchingFor and searchingFor isnt shouldBeSearchingFor
+		loading and shouldBeLoading and loading isnt shouldBeLoading
 
 	getSelected: (props) -> 
 		props = props or @props
@@ -52,23 +53,27 @@ module.exports = React.createClass
 			Header()
 			React.createElement 'div', {className: 'app__main-content'}, 
 				React.createElement 'div', {className: 'app__scroll-stuff'}, 
-					if @state.searching or @state.searchingPosition or not @state.travelSearch or @searchingForWrongPlace()
+					if @state.loading.travel or @state.loading.position or not @state.travelSearch or @loadingWrongPlace()
 						TravelLoadingView
 							query: @state.query
-							hideString: @searchingForWrongPlace()
+							hideString: @loadingWrongPlace()
 					else if @state.travelSearch.length is 0
 						TravelStartView
 							selected: +selected
 							places: @props.places
+							performSearch: @performSearch
+							loading: @state.loading.travel
 					else
+						console.log @props
 						TravelResultView
 							travelSearch: @state.travelSearch
 							query: @state.query
+							loading: @state.loading
 			Skyline()
 			if @props.places
 				PlaceButtonsView
 					selected: +selected
-					searching: @state.searching
+					loading: @state.loading.travel
 					places: @props.places
 					position: @props.position
 					performSearch: @performSearch

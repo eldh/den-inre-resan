@@ -3,6 +3,7 @@ Reflux = require 'reflux'
 TagInitializer = require '../../mixins/tag-initializer'
 TravelActions = require '../../actions/travel--actions'
 SectionView = React.createFactory require './travel-section--view'
+SearchMoreView = React.createFactory require './travel-search-more--view'
 
 module.exports = React.createClass 
 
@@ -31,10 +32,11 @@ module.exports = React.createClass
 					open: @state.openSection is i + 1
 					onClick: @setOpenSection i + 1
 					key: section.LegList.Leg[0].Origin.time + i + destination
+			SearchMoreView loading: @props.loading
 
 	setOpenSection: (i) ->
 		=> 
-			if @state.openSection is i then i = null			 
+			if @state.openSection is i then i = null
 			@setState
 				openSection: i
 

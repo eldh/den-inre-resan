@@ -1,6 +1,20 @@
 .travel-sections {
 	overflow-y: scroll; /* has to be scroll, not auto */
 	-webkit-overflow-scrolling: touch;
+	margin-bottom: $base-spacing-unit * 2;
+	@include layer;
+}
+
+.travel-sections__more {
+	display: flex;
+	justify-content: center;
+	line-height: $base-spacing-unit * 2;
+	text-align: center;
+	margin: auto;
+	background-color: $background-color;
+	margin-top: 1px;
+	padding: $half-spacing-unit;
+	color: $font-color;
 }
 
 .travel-section__wrapper {
@@ -59,6 +73,7 @@
 .travel-section--closed {
 	flex-direction: column;
 	align-content: space-between;
+	@include layer;
 	.travel-section__duration {
 		margin-left: $half-spacing-unit;
 		margin-top: $base-spacing-unit;
@@ -99,7 +114,6 @@
 }
 .travel-section__place {
 	// text-transform: uppercase;
-	font-weight: 400;
 	@include truncate(100%);
 }
 

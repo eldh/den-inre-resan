@@ -14,6 +14,10 @@ module.exports = Reflux.createStore
 		@data =
 			query: {}
 			travelSearch: []
+			loading:
+				position: false
+				travel: false
+				more: false
 
 	getDefaultData: ->
 		@data
@@ -23,11 +27,12 @@ module.exports = Reflux.createStore
 
 
 	setPosition: (callback) ->
-		@data.searchingPosition = true
+		@data.loading.position = true
 		@trigger @data
 		navigator.geolocation.getCurrentPosition (position) =>
+			@data.position = position
 			callback? position, @data
-			@data.searchingPosition = false
+			@data.loading.position = false
 			@trigger @data
 
 	onTest: (data) ->
@@ -35,14 +40,26 @@ module.exports = Reflux.createStore
 
 	onSearchTrip: (data) ->
 		return unless data?
-		@data.searching = true
+		@data.loading.travel = true
 		data = 
 			destId: data.SiteId
 			name: data.Name
+			time: data.time or @getTime()
 		@data.query = data
-		@setPosition (position) => @searchTrip(position, data)
+		callback = @onSearchTripDone(data.destId)
+		@setPosition (position) => @searchTrip(position, data, callback)
 
-	searchTrip: (position, data) ->
+	onSearchMore: ->
+		tripArr = @data.travelSearch[@data.travelSearch.length - 1].TripList.Trip
+		time = tripArr[tripArr.length - 1].LegList.Leg[0].Origin.time
+		callback = @onSearchMoreDone(@data.destId)
+		console.log time, @data.position
+		data = _.extend @data.query, {time: time}
+		@data.loading.more = true
+		@searchTrip @data.position, data, callback
+
+
+	searchTrip: (position, data, callback) ->
 		return unless position and data.destId
 		data = 
 			originCoordLat: position.coords.latitude
@@ -52,16 +69,30 @@ module.exports = Reflux.createStore
 			originCoordName: position.name or 'Nuvarande plats'
 			destId: data.destId
 			name: data.name
+			time: data.time
 		Tracking.trackEvent(Tracking.CATEGORIES.TRAVEL, Tracking.EVENTS.TRAVEL.SEARCH)
-		Api.searchTrip(data, _.bind(@onSearchTripDone(data.destId), this), false)
+		Api.searchTrip(data, callback, false)
 		@trigger @data
 
 	onSearchTripDone: (destId) ->
 		(response, dat) =>
 			# We don't want to update if we have started another search
-			return null if @data.searching and destId isnt @data.query.destId
+			return null if @isLoading() and destId isnt @data.query.destId
 			@data.travelSearch.push response
-			@data.searching = false
+			@data.loading.travel = false
+			@trigger @data
+
+	onSearchMoreDone: (destId) ->
+		(response, dat) =>
+			# We don't want to update if we have started another search
+			return null if @data.loading.travel and destId isnt @data.query.destId
+			
+			index = @data.travelSearch.length - 1
+			# Remove the first element, because that will be the same as last one in last search.
+			response.TripList.Trip.shift()
+			updated = @data.travelSearch[index].TripList.Trip.concat(response.TripList.Trip) 
+			@data.travelSearch[index].TripList.Trip = updated
+			@data.loading.more = false
 			@trigger @data
 
 	searchFromPosition: ->
@@ -84,5 +115,13 @@ module.exports = Reflux.createStore
 		now = new Date()
 		now.getDay() is 0 or now.getDay() is 6
 
+	isLoading: ->
+		@data.loading.travel or @data.loading.location or @data.loading.more
+
 	getDistance: (p1, p2) ->
 		Math.sqrt Math.pow((p1.x - p2.x),2) + Math.pow((p1.y - p2.y),2)
+
+	getTime: ->
+		date = new Date()
+		date.setMinutes date.getMinutes() - 4
+		"#{date.getHours()}:#{date.getMinutes()}"

@@ -54,7 +54,7 @@ module.exports = React.createClass
 		if @props.places[index]?.station
 
 			# We need to force the search if we are already on the route. But don't search if we're already searching.
-			if +index is +@props.selected and not @props.searching
+			if +index is +@props.selected and not @props.loading
 				@props.performSearch @props
 			# Else the route mechanism will handle the search
 			else	
