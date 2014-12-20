@@ -44,11 +44,12 @@ module.exports = React.createClass
 				@div {className: 'travel-section__origin', key: 'origin'},
 					# @span {className: 'travel-section__time'}, @props.lastSection?.Destination.time
 					@span {className: 'travel-section__place', key: 'place'}, section.Origin.name
-					@span {className: 'travel-section__time', key: 'time'}, section.Origin.time
+					@span {className: 'travel-section__time', key: 'time'}, 
+						section.Origin.time
+					if section.line
+						@span {className: 'travel-section__line'}, "#{section.line} mot #{section.dir}"
 
 					@div {className: 'travel-section__between', key: 'between'},
-						if section.line
-							@span {className: 'travel-section__line'}, "#{section.line} mot #{section.dir}"
 						' '
 					@span {className: 'travel-section__time', key: 'desttime'}, section.Destination.time
 					if @props.last

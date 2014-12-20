@@ -122,8 +122,8 @@
 }
 .travel-section__line {
 	color: $quiet-color;
-	font-size: $centi-size;
-	margin-left: $half-spacing-unit / 2;
+	// font-size: $centi-size;
+	// margin-left: $half-spacing-unit / 2;
 	@include truncate(100%);
 }
 .travel-sections--error {
