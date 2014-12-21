@@ -5,10 +5,10 @@ TravelActions = require '../../actions/travel--actions'
 
 module.exports = React.createClass 
 
-	displayName: 'TravelResultView'
+	displayName: 'TravelSearchMoreView'
 
 	propTypes:
-		travelSearch: React.PropTypes.array.isRequired
+		loading: React.PropTypes.object.isRequired
 
 	mixins: [TagInitializer]
 
