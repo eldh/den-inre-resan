@@ -20,9 +20,10 @@ module.exports = React.createClass
 	componentWillMount: ->
 		@performSearch()
 
-	# componentWillReceiveProps: (newProps) ->
-	# 	if newProps.places 
-	# 		if (not @props.places?) or (@getSelected(newProps) isnt @getSelected())
+	componentWillReceiveProps: (newProps) ->
+		if newProps.places 
+			if (not @props.places?) or (@getSelected(newProps) isnt @getSelected())
+				@performSearch newProps
 
 	onTravelDataChange: (data) ->
 		@setState data
@@ -36,14 +37,7 @@ module.exports = React.createClass
 			# debugger
 			TravelActions.searchTrip props.places[selected]?.station
 
-	loadingWrongPlace: ->
-		# Hack!
-		loading = @state.query?.destId
-		shouldBeLoading = @props.places?[@getSelected()]?.station?.SiteId
-
-		loading and shouldBeLoading and loading isnt shouldBeLoading
-
-	getSelected: (props) -> 
+	getSelected: (props) ->
 		props = props or @props
 		return props.params?.spot or null
 
@@ -53,10 +47,9 @@ module.exports = React.createClass
 			Header()
 			React.createElement 'div', {className: 'app__main-content'}, 
 				React.createElement 'div', {className: 'app__scroll-stuff'}, 
-					if @state.loading.travel or @state.loading.position or not @state.travelSearch or @loadingWrongPlace()
+					if @state.loading.travel or @state.loading.position or not @state.travelSearch
 						TravelLoadingView
 							query: @state.query
-							hideString: @loadingWrongPlace()
 					else if @state.travelSearch.length is 0
 						TravelStartView
 							selected: +selected

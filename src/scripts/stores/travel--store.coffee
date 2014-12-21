@@ -25,7 +25,6 @@ module.exports = Reflux.createStore
 	onRead: (data) ->
 		Api.read data
 
-
 	setPosition: (callback) ->
 		@data.loading.position = true
 		@trigger @data
@@ -40,12 +39,12 @@ module.exports = Reflux.createStore
 
 	onSearchTrip: (data) ->
 		return unless data?
-		@data.loading.travel = true
 		data = 
 			destId: data.SiteId
 			name: data.Name
 			time: data.time or @getTime()
 		@data.query = data
+		@data.loading.travel = true
 		callback = @onSearchTripDone(data.destId)
 		@setPosition (position) => @searchTrip(position, data, callback)
 
