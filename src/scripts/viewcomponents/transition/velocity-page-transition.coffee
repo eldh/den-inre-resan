@@ -205,7 +205,6 @@ VelocityTransitionGroupChild = React.createFactory React.createClass
 				easing: @getEasing @props.transition, animationType
 				delay: @getDelay @props.transition, animationType
 				begin: =>
-					console.log animationType, @props.transition
 					if (animationType is 'enter' and @props.transition is 'slideDown') or (animationType is 'leave' and @props.transition is 'slideUp')
 						node.classList.add 'way-back'
 					else if @props.transition is 'slideDown' or @props.transition is 'slideUp'

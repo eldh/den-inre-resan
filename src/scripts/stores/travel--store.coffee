@@ -53,7 +53,6 @@ module.exports = Reflux.createStore
 		tripArr = @data.travelSearch[@data.travelSearch.length - 1].TripList.Trip
 		time = tripArr[tripArr.length - 1].LegList.Leg[0].Origin.time
 		callback = @onSearchMoreDone(@data.destId)
-		console.log time, @data.position
 		data = _.extend @data.query, {time: time}
 		@data.loading.more = true
 		@searchTrip @data.position, data, callback

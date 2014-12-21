@@ -13,7 +13,6 @@ module.exports = React.createClass
 	mixins: [TagInitializer]
 
 	render: ->
-		console.log @props
 		@div
 			className: 'travel-sections__more'
 			onClick: @onClick

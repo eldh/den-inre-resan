@@ -64,7 +64,6 @@ module.exports = React.createClass
 							performSearch: @performSearch
 							loading: @state.loading.travel
 					else
-						console.log @props
 						TravelResultView
 							travelSearch: @state.travelSearch
 							query: @state.query

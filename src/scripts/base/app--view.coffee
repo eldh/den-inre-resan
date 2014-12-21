@@ -8,6 +8,7 @@ TouchSupportMixin = require '../mixins/touch-support'
 VelocityTransition = React.createFactory require '../viewcomponents/transition/velocity-page-transition'
 TransitionGroup = require('react/lib/ReactCSSTransitionGroup');
 RouteHandler = React.createFactory Router.RouteHandler
+_ = require 'lodash'
 
 module.exports = React.createClass 
 
@@ -23,6 +24,7 @@ module.exports = React.createClass
 			places: data
 
 	getInitialState: ->
+		places: PlaceStore.getDefaultData()
 		transition: 'overlayerIn'
 
 	componentWillReceiveProps: (newProps) ->
